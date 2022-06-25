@@ -1,31 +1,39 @@
 use std::io::Write;
  fn main() {
-    let option: i32 = get_integer("
+
+    loop {
+        let option: i32 = get_integer("
         1. Addition
         2. Subtraction
         3. Multiplication
         4. Division
+        5. Quit
         Select Operation:
-    ");
-    
-    if option < 1 || option > 4 {
-        println!("Enter a valid option [1-4]");
-        std::process::exit(1);
-    }
-    
-    let nums: (i32, i32) = (
-        get_integer("Enter Number 1: "),
-        get_integer("Enter number 2: ")
-    );
+        ");
+        
+        if option < 1 || option > 5 {
+            println!("Enter a valid option [1-5]. Try again");
+            continue;
+        }
 
-    if option == 1 {
-        println!("{} + {} = {}", nums.0, nums.1, nums.0 + nums.1);
-    } else if option == 2 {
-        println!("{} - {} = {}", nums.0, nums.1, nums.0 - nums.1);
-    } else if option == 3 {
-        println!("{} * {} = {}", nums.0, nums.1, nums.0 * nums.1);
-    } else if option == 4 {
-        println!("{} / {} = {:.3}", nums.0, nums.1, (nums.0 as f32) / (nums.1 as f32));
+        if option == 5 {
+            break;
+        }
+
+        let nums: (i32, i32) = (
+            get_integer("Enter Number 1: "),
+            get_integer("Enter number 2: ")
+        );
+        
+        if option == 1 {
+            println!("{} + {} = {}", nums.0, nums.1, nums.0 + nums.1);
+        } else if option == 2 {
+            println!("{} - {} = {}", nums.0, nums.1, nums.0 - nums.1);
+        } else if option == 3 {
+            println!("{} * {} = {}", nums.0, nums.1, nums.0 * nums.1);
+        } else if option == 4 {
+            println!("{} / {} = {:.3}", nums.0, nums.1, (nums.0 as f32) / (nums.1 as f32));
+        } 
     }
 }
 
